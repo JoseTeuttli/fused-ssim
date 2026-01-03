@@ -24,7 +24,7 @@ def configure_cuda():
     ]
 
     log("Compiling for CUDA.")
-    compiler_args = {"cxx": ["-O2", "/std:c++17", "/permissive-"], "nvcc": ["-O3"]}
+    compiler_args = {"cxx": ["-O2", "/std:c++20", "/permissive-"], "nvcc": ["-O3"]}
 
     if torch.version.hip:
         log("Detected AMD GPU with ROCm/HIP")
