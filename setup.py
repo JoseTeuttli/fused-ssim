@@ -72,7 +72,7 @@ def configure_cuda():
 def configure_mps():
     """Configure Apple MPS backend."""
     log("Compiling for MPS.")
-    compiler_args = {"cxx": ["-O3", "-std=c++17", "-ObjC++", "-Wno-unused-parameter"]}
+    compiler_args = {"cxx": ["-O3", "-std=c++17", "-ObjC++", "-Wno-unused-parameter", "/permissive-"]}
     link_args = ["-framework", "Metal", "-framework", "Foundation"]
     return CppExtension, "ssim.mm", "fused_ssim_mps", compiler_args, link_args, "Apple Silicon (MPS)"
 
@@ -82,7 +82,7 @@ def configure_xpu():
     log("Compiling for XPU.")
     os.environ['CXX'] = 'icpx'
 
-    compiler_args = {"cxx": ["-O3", "-std=c++17", "-fsycl"]}
+    compiler_args = {"cxx": ["-O3", "-std=c++17", "-fsycl", "/permissive-"]}
     link_args = ["-fsycl"]
 
     try:
